@@ -4,8 +4,7 @@
 
 月面的明暗交界线不是贴图，也不是预渲染动画：太阳和月球在该时刻的位置由天文历表算出，再照到 NASA 的实测月面模型上。所以天平动、月海边缘随光照角度变化的阴影、新月时暗面那层微弱的地照，都是算出来的，不是画上去的。
 
-在线版本：https://moon-right-now.app.workbuddy.host/?sharecode=YIGSZLEDJN
-（链接要带 `sharecode`，裸域名打不开）
+在线预览（GitHub Pages）：https://huangyc88186687.github.io/moon-right-now/
 
 源码：https://github.com/huangyc88186687/moon-right-now
 
@@ -27,9 +26,18 @@
 
 月球黄经残差 rms 0.35°、黄纬 0.03°。那 0.35° 是 J2000 平春分点与当天真春分点之间的岁差差，在日月相对几何里自动抵消，不影响照亮比例。
 
-天文计算全在浏览器里跑，不调用任何外部 API；Flask 只负责发页面和静态文件。
+天文计算全在浏览器里跑，不调用任何外部 API。页面是纯静态的，GitHub Pages 直接托管；仓库里的 Flask 入口只是本地运行的另一种方式。
 
 ## 跑起来
+
+静态托管（和线上一致）：
+
+```bash
+python -m http.server 8000
+# 打开 http://localhost:8000
+```
+
+或者用 Flask 入口：
 
 ```bash
 pip install -r requirements.txt
@@ -37,7 +45,7 @@ python main_app.py
 # 打开 http://127.0.0.1:5001
 ```
 
-只需要 Flask，Python 3.8+。端口读 `PORT` 环境变量。
+只需要 Flask，Python 3.8+。端口读 `PORT` 环境变量。页面里的资源都用相对路径，放在站点根路径或仓库子路径下都能加载；直接双击 `index.html` 用 `file://` 打开不行，GLTFLoader 需要 HTTP。
 
 ## 怎么用
 
@@ -47,6 +55,10 @@ python main_app.py
 - 底部时间轴播放，1 时/秒 或 1 天/秒，前后各 30 天，一键回到现在
 - URL 锚点直达任意时刻：`#2026-11-24T22:54`（北京时间）
 - `#cal` 是校准模式，太阳跟随相机，用来核对月面纹理朝向
+
+## GitHub Pages
+
+仓库设置：Settings → Pages → Deploy from a branch → `main` / `/ (root)`。根目录的 `index.html` 同时被 Flask 和 Pages 使用，只有一份，不会两边不同步；`.nojekyll` 让 Pages 跳过 Jekyll、原样发布 `static/` 下的模型和脚本。
 
 ## 数据从哪来
 
@@ -59,8 +71,8 @@ Three.js r128（含 GLTFLoader）是 MIT；本项目代码也是 MIT。详见 [T
 ## 目录
 
 ```
-main_app.py                 Flask 入口
-templates/index.html        单页结构
+index.html                  页面入口（Flask 与 GitHub Pages 共用）
+main_app.py                 Flask 入口，可选
 static/app.js               天文历表 + Three.js 场景 + 交互
 static/style.css            仪器面板样式
 static/models/moon_opt.glb  NASA 月球模型（3.9 MB）

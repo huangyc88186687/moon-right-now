@@ -353,7 +353,7 @@
   window.createImageBitmap = undefined;
 
   new THREE.GLTFLoader(manager).load(
-    '/static/models/moon_opt.glb',
+    'static/models/moon_opt.glb',
     function (gltf) {
       var model = gltf.scene;
       // —— 校准：模型坐标 → 月固坐标 ——

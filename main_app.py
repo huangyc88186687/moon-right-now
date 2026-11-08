@@ -3,7 +3,8 @@
 import os
 from flask import Flask, render_template, jsonify, request
 
-app = Flask(__name__)
+# 根目录的 index.html 同时供 Flask 与 GitHub Pages 使用，只维护一份
+app = Flask(__name__, template_folder=".")
 
 
 @app.after_request
