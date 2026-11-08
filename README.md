@@ -67,7 +67,3 @@ static/models/moon_opt.glb  NASA 月球模型（3.9 MB）
 static/three.min.js         Three.js r128
 static/GLTFLoader.js        Three.js GLTFLoader r128
 ```
-
-## 背景
-
-猿编程「科技少年黑客松」2026 秋季赛，高手组 · 应用与网站赛道，主题「2030 少年月球建造计划」。
