@@ -1,0 +1,20 @@
+# 调试 GLB 加载时留下的贴图/模型变体，不属于发布资源
+static/models/tiny.glb
+static/models/variantA.glb
+static/models/variantB.glb
+static/models/t*.jpg
+static/models/check_tex.jpg
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# 编辑器 / 系统
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

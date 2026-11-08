@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>此刻的月亮 · The Moon, Right Now</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- 加载屏 -->
+<div id="loading">
+  <div class="load-title">此刻的月亮</div>
+  <div class="load-bar"><i id="loadBar"></i></div>
+  <div class="load-tip" id="loadTip">正在加载月球模型 · 3.9 MB</div>
+</div>
+
+<!-- 3D 舞台 -->
+<div id="stage"></div>
+
+<!-- 标题 -->
+<header class="brand">
+  <h1>此刻的月亮</h1>
+  <p>THE MOON, RIGHT NOW</p>
+</header>
+
+<!-- 左下：读数 -->
+<section class="readout" id="readout">
+  <div class="ro-row"><span>模拟时间</span><b id="roTime">—</b></div>
+  <div class="ro-row"><span>月相</span><b id="roPhase">—</b></div>
+  <div class="ro-row"><span>月龄</span><b id="roAge">—</b></div>
+  <div class="ro-row"><span>照亮</span><b id="roIllum">—</b></div>
+  <div class="ro-row"><span>日下点</span><b id="roSub">—</b></div>
+  <div class="ro-row"><span>下次满月</span><b id="roFull">—</b></div>
+</section>
+
+<!-- 点击月面的信息卡 -->
+<section class="spot-card" id="spotCard" hidden>
+  <div class="sc-head">
+    <b id="scName">—</b>
+    <button class="sc-close" id="scClose" aria-label="关闭">×</button>
+  </div>
+  <div class="sc-grid">
+    <div><span>纬度</span><b id="scLat">—</b></div>
+    <div><span>经度</span><b id="scLon">—</b></div>
+    <div><span>太阳高度角</span><b id="scSun">—</b></div>
+    <div><span>地表状态</span><b id="scDay">—</b></div>
+  </div>
+  <p class="sc-note" id="scNote"></p>
+</section>
+
+<!-- 右上：地标 -->
+<section class="landmarks">
+  <div class="lm-title">月面坐标 · 真实位置</div>
+  <div id="lmList"></div>
+</section>
+
+<!-- 底部时间轴 -->
+<footer class="timeline">
+  <button id="btnPlay" class="tl-play" aria-label="播放">▶</button>
+  <div class="tl-speed">
+    <button data-spd="3600" class="on">1时/秒</button>
+    <button data-spd="86400">1天/秒</button>
+  </div>
+  <input type="range" id="tlRange" min="-30" max="30" step="0.005" value="0">
+  <button id="btnNow" class="tl-now">回到现在</button>
+</footer>
+
+<div class="hint">拖动环视 · 滚轮缩放 · 点击月面任意位置</div>
+
+<script src="/static/three.min.js"></script>
+<script src="/static/GLTFLoader.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
